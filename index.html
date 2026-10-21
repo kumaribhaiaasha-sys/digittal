@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>सम्पूर्ण हिन्दू धर्मग्रन्थ संग्रह | Hindu Granth Hindi</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Rozha+One&family=Yantramanav:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-dark: #0a060e;
+      --gold-primary: #f59e0b;
+      --gold-glow: #fbbf24;
+      --saffron: #f97316;
+      --emerald: #10b981;
+      --emerald-dark: #047857;
+      --glass-bg: rgba(255, 255, 255, 0.04);
+      --glass-border: rgba(245, 158, 11, 0.22);
+      --glass-highlight: rgba(255, 255, 255, 0.12);
+      --text-main: #fef3c7;
+      --text-muted: #d1d5db;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      font-family: 'Yantramanav', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: radial-gradient(circle at 50% 0%, #2e1065 0%, #0f051d 40%, var(--bg-dark) 100%);
+      color: var(--text-main);
+      line-height: 1.6;
+      overflow-x: hidden;
+      min-height: 100vh;
+      padding-bottom: 90px;
+    }
+
+    .container {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 24px 16px;
+      position: relative;
+      z-index: 2;
+    }
+
+    /* Ambient Background Lights */
+    .orb-glow {
+      position: fixed;
+      width: 320px;
+      height: 320px;
+      border-radius: 50%;
+      filter: blur(90px);
+      pointer-events: none;
+      z-index: 1;
+      opacity: 0.35;
+      animation: floatOrb 10s ease-in-out infinite alternate;
+    }
+    .orb-1 { top: 5%; left: -80px; background: #ea580c; }
+    .orb-2 { top: 40%; right: -80px; background: #7c3aed; }
+    .orb-3 { bottom: 10%; left: 20%; background: #b45309; }
+
+    @keyframes floatOrb {
+      0% { transform: translateY(0) scale(1); }
+      100% { transform: translateY(40px) scale(1.15); }
+    }
+
+    /* Glass Panels */
+    .glass-card {
+      background: var(--glass-bg);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border: 1px solid var(--glass-border);
+      border-radius: 20px;
+      padding: 24px;
+      margin-bottom: 24px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .glass-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: -100%;
+      width: 100%; height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.05), transparent);
+      animation: glassShine 8s infinite;
+    }
+
+    @keyframes glassShine {
+      0%, 80% { left: -100%; }
+      100% { left: 100%; }
+    }
+
+    /* Typography */
+    h1, h2, h3 {
+      font-family: 'Rozha One', serif;
+      color: #fff;
+      font-weight: 400;
+      letter-spacing: 0.5px;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 14px;
+      background: rgba(245, 158, 11, 0.15);
+      border: 1px solid rgba(245, 158, 11, 0.4);
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 700;
+      color: #fde68a;
+      margin-bottom: 16px;
+      text-transform: uppercase;
+    }
+
+    .hero-title {
+      font-size: clamp(24px, 6vw, 34px);
+      line-height: 1.3;
+      margin-bottom: 12px;
+      background: linear-gradient(135deg, #fff 20%, #fde68a 70%, #f59e0b 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-align: center;
+    }
+
+    .hero-subtitle {
+      font-size: 15px;
+      color: #e5e7eb;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    /* Benefits List */
+    .benefit-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 12px;
+      font-size: 15px;
+      font-weight: 500;
+    }
+    .benefit-item:last-child { margin-bottom: 0; }
+    .trishul-icon {
+      font-size: 18px;
+      color: var(--gold-glow);
+      flex-shrink: 0;
+    }
+
+    /* Pricing Box */
+    .pricing-wrap {
+      text-align: center;
+      padding: 20px 16px;
+      background: linear-gradient(180deg, rgba(245, 158, 11, 0.08) 0%, rgba(0, 0, 0, 0.3) 100%);
+      border: 1px dashed rgba(245, 158, 11, 0.5);
+      border-radius: 16px;
+      margin: 20px 0;
+    }
+
+    .price-strike {
+      font-size: 16px;
+      color: #9ca3af;
+      text-decoration: line-through;
+      margin-right: 10px;
+    }
+
+    .price-live {
+      font-size: 38px;
+      font-weight: 900;
+      color: #34d399;
+      text-shadow: 0 0 16px rgba(52, 211, 153, 0.4);
+    }
+
+    /* 3D Kinetic Buttons */
+    .btn-3d {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      width: 100%;
+      padding: 16px 24px;
+      font-size: 18px;
+      font-weight: 900;
+      text-decoration: none;
+      color: #ffffff;
+      background: linear-gradient(180deg, #10b981 0%, #059669 50%, #047857 100%);
+      border: none;
+      border-radius: 14px;
+      position: relative;
+      cursor: pointer;
+      box-shadow: 
+        0 6px 0 #064e3b,
+        0 10px 22px rgba(16, 185, 129, 0.5),
+        inset 0 1px 0 rgba(255, 255, 255, 0.4);
+      transform: translateY(0);
+      transition: all 0.15s ease-in-out;
+      text-align: center;
+    }
+
+    .btn-3d::after {
+      content: '';
+      position: absolute;
+      top: -2px; left: -2px; right: -2px; bottom: -2px;
+      border-radius: 16px;
+      background: linear-gradient(45deg, #34d399, transparent, #fbbf24);
+      z-index: -1;
+      opacity: 0.7;
+      animation: pulseGlow 2.5s infinite;
+    }
+
+    @keyframes pulseGlow {
+      0%, 100% { opacity: 0.3; transform: scale(1); }
+      50% { opacity: 0.9; transform: scale(1.02); }
+    }
+
+    .btn-3d:hover {
+      transform: translateY(-2px);
+      box-shadow: 
+        0 8px 0 #064e3b,
+        0 14px 28px rgba(16, 185, 129, 0.65),
+        inset 0 1px 0 rgba(255, 255, 255, 0.5);
+    }
+
+    .btn-3d:active {
+      transform: translateY(4px);
+      box-shadow: 
+        0 2px 0 #064e3b,
+        0 4px 10px rgba(16, 185, 129, 0.4),
+        inset 0 2px 4px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Granth Category Badges */
+    .granth-grid {
+      display: grid;
+      gap: 16px;
+    }
+
+    .granth-box {
+      background: rgba(0, 0, 0, 0.3);
+      border-left: 3px solid var(--gold-primary);
+      border-radius: 12px;
+      padding: 14px 16px;
+    }
+
+    .granth-box h4 {
+      font-size: 17px;
+      color: #fbbf24;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .granth-box p {
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    /* Mission Quote Card */
+    .quote-card {
+      border: 1px solid rgba(245, 158, 11, 0.3);
+      background: linear-gradient(135deg, rgba(124, 58, 237, 0.12) 0%, rgba(245, 158, 11, 0.08) 100%);
+      font-style: italic;
+      position: relative;
+    }
+
+    /* FAQ Details */
+    details {
+      background: rgba(0, 0, 0, 0.25);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 10px;
+      margin-bottom: 10px;
+      padding: 12px 16px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    details[open] {
+      background: rgba(245, 158, 11, 0.06);
+      border-color: rgba(245, 158, 11, 0.3);
+    }
+    summary {
+      font-weight: 700;
+      color: #fde68a;
+      outline: none;
+      list-style: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    summary::-webkit-details-marker { display: none; }
+    summary::after {
+      content: '+';
+      font-size: 20px;
+      color: var(--gold-glow);
+    }
+    details[open] summary::after {
+      content: '−';
+    }
+    details p {
+      margin-top: 10px;
+      font-size: 14px;
+      color: #e5e7eb;
+    }
+
+    /* Sticky Bottom 3D CTA Bar */
+    .sticky-bar {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(10, 6, 14, 0.92);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-top: 1px solid rgba(245, 158, 11, 0.3);
+      padding: 10px 16px;
+      z-index: 99;
+      display: flex;
+      justify-content: center;
+    }
+    .sticky-bar .btn-3d {
+      max-width: 520px;
+      padding: 12px 20px;
+      font-size: 16px;
+    }
+
+    .footer {
+      text-align: center;
+      font-size: 12px;
+      color: #9ca3af;
+      margin-top: 32px;
+      padding: 0 10px;
+    }
+    .footer a {
+      color: #fbbf24;
+      text-decoration: none;
+      margin: 0 6px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Ambient Light Orbs -->
+  <div class="orb-glow orb-1"></div>
+  <div class="orb-glow orb-2"></div>
+  <div class="orb-glow orb-3"></div>
+
+  <div class="container">
+
+    <!-- Top Sacred Header Card -->
+    <div class="glass-card" style="text-align: center;">
+      <div class="hero-badge">🕉️ सम्पूर्ण सनातन धर्मग्रंथ संग्रह</div>
+      <h1 class="hero-title">ज्ञान ही सबसे बड़ा धन है</h1>
+      <p class="hero-subtitle">
+        अब आपके हाथ में है सम्पूर्ण हिंदू धर्मग्रंथों का दिव्य खजाना — घर बैठे प्राप्त करें सनातन संस्कृति का संपूर्ण ज्ञान!
+      </p>
+
+      <div style="text-align: left; margin: 18px 0;">
+        <div class="benefit-item">
+          <span class="trishul-icon">🔱</span>
+          <span>150+ सनातन धर्म ग्रंथों की ई-बुक का संपूर्ण संग्रह</span>
+        </div>
+        <div class="benefit-item">
+          <span class="trishul-icon">🔱</span>
+          <span>पूरी तरह से शुद्ध व सरल हिंदी भाषा में अनुवादित</span>
+        </div>
+        <div class="benefit-item">
+          <span class="trishul-icon">🔱</span>
+          <span>संस्कृत के मूल श्लोक और हिंदी अर्थ सहित</span>
+        </div>
+        <div class="benefit-item">
+          <span class="trishul-icon">🔱</span>
+          <span>तुरंत लाइफटाइम डिजिटल डाउनलोड (PDF फॉर्मेट)</span>
+        </div>
+        <div class="benefit-item">
+          <span class="trishul-icon">🔱</span>
+          <span>मुफ्त बोनस: संस्कृत श्लोक संग्रह बिल्कुल फ्री!</span>
+        </div>
+      </div>
+
+      <!-- Pricing Box -->
+      <div class="pricing-wrap">
+        <div>
+          <span class="price-strike">₹599</span>
+          <span style="font-size: 14px; color: #fbbf24; font-weight: bold;">(67% की विशेष छूट)</span>
+        </div>
+        <div class="price-live">मात्र ₹199/-</div>
+        <p style="font-size: 13px; color: #d1d5db; margin-top: 4px;">⚡ केवल आज के लिए सीमित समय ऑफर</p>
+      </div>
+
+      <!-- 3D CTA Button -->
+      <a href="https://superprofile.bio/vp/Hindu-Granth" target="_blank" rel="noopener noreferrer" class="btn-3d">
+        <span>🕉️ आज ही अपना पवित्र संग्रह प्राप्त करें 🕉️</span>
+      </a>
+    </div>
+
+    <!-- Scripture Breakdown Section -->
+    <div class="glass-card">
+      <h2 style="font-size: 22px; text-align: center; margin-bottom: 16px; color: #fde68a;">
+        📜 150+ पवित्र धर्मग्रंथों की विस्तृत सूची
+      </h2>
+
+      <div class="granth-grid">
+        <div class="granth-box">
+          <h4>📖 चारों वेद</h4>
+          <p>ऋग्वेद, यजुर्वेद, सामवेद, अथर्ववेद (सरल हिंदी व्याख्या सहित)।</p>
+        </div>
+
+        <div class="granth-box">
+          <h4>📿 18 महापुराण</h4>
+          <p>ब्रह्म, पद्म, विष्णु, शिव, भागवत, नारद, मार्कण्डेय, अग्नि, भविष्य, ब्रह्मवैवर्त, लिंग, वराह, स्कंद, वामन, कूर्म, मत्स्य, गरुड़, ब्रह्मांड पुराण।</p>
+        </div>
+
+        <div class="granth-box">
+          <h4>✨ 108 उपनिषद</h4>
+          <p>ईश, केन, कठ, प्रश्न, मुण्डक, माण्डूक्य, तैत्तिरीय, ऐतरेय, छांदोग्य, बृहदारण्यक सहित सभी 108 उपनिषद।</p>
+        </div>
+
+        <div class="granth-box">
+          <h4>🧘‍♂️ 6 दर्शन शास्त्र</h4>
+          <p>सांख्य दर्शन, योग दर्शन, न्याय दर्शन, वैशेषिक दर्शन, मीमांसा दर्शन, वेदांत दर्शन।</p>
+        </div>
+
+        <div class="granth-box">
+          <h4>🌺 51 चालीसा संग्रह</h4>
+          <p>शिव, हनुमान, दुर्गा, महाकाल, गणेश, लक्ष्मी, विष्णु, श्री राम, शनि, काल भैरव चालीसा सहित 51 दिव्य चालीसाएं।</p>
+        </div>
+
+        <div class="granth-box">
+          <h4>🏹 विशेष पूज्य ग्रंथ</h4>
+          <p>संपूर्ण श्रीमद्भगवद्गीता, वाल्मीकि रामायण, महाभारत, रामचरितमानस, चाणक्य नीति, चरक संहिता, सुश्रुत संहिता, रावण संहिता, वास्तु शास्त्र, एवं संपूर्ण ज्योतिष शास्त्र।</p>
+        </div>
+      </div>
+
+      <div style="margin-top: 20px;">
+        <a href="https://superprofile.bio/vp/Hindu-Granth" target="_blank" rel="noopener noreferrer" class="btn-3d">
+          <span>➡️ सभी ग्रन्थ अभी डाउनलोड करें</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Mission Statement -->
+    <div class="glass-card quote-card">
+      <h3 style="font-size: 18px; color: #fbbf24; margin-bottom: 10px;">
+        इतने कम मूल्य में इतने सारे ग्रंथ क्यों?
+      </h3>
+      <p style="font-size: 14px; line-height: 1.7; color: #fef3c7;">
+        “हमारा उद्देश्य केवल इन ग्रंथों को वितरित करना नहीं है, बल्कि हर व्यक्ति के जीवन में सनातन धर्म का प्रकाश फैलाना है। ये वे अमूल्य रत्न हैं जिन्हें हमारे ऋषि-मुनियों ने हजारों वर्षों की तपस्या से प्राप्त किया। आज जब युवा अपनी जड़ों से दूर हो रहे हैं, तब हमारा संकल्प है कि हर घर में वेदों की वाणी गूंजे और गीता का उपदेश हर मन में बसे।”
+      </p>
+    </div>
+
+    <!-- Why Read Granth -->
+    <div class="glass-card">
+      <h3 style="font-size: 20px; text-align: center; margin-bottom: 16px; color: #fde68a;">
+        📚 हमें हिंदू धर्मग्रंथ क्यों पढ़ने चाहिए?
+      </h3>
+      <div style="display: flex; flex-direction: column; gap: 12px; font-size: 14px;">
+        <div><strong>1️⃣ पूर्वजों की अमूल्य विरासत:</strong> अपने हज़ारों वर्ष पुराने गौरवशाली इतिहास, दर्शन और सनातन संस्कृति को गहराई से समझें।</div>
+        <div><strong>2️⃣ जीवन का सही मार्गदर्शन:</strong> धर्म के मार्ग पर चलना, सही निर्णय लेना और कठिनाइयों का समाधान पाना।</div>
+        <div><strong>3️⃣ मानसिक शांति एवं आत्मबल:</strong> पवित्र श्लोक मानसिक तनाव को दूर कर आत्मिक शांति और एकाग्रता प्रदान करते हैं।</div>
+        <div><strong>4️⃣ नई पीढ़ी के लिए संस्कार:</strong> अपने बच्चों और परिवार को सनातन मूल्यों, सत्य और निष्ठा की शिक्षा दें।</div>
+      </div>
+    </div>
+
+    <!-- FAQ Accordion -->
+    <div class="glass-card">
+      <h3 style="font-size: 20px; text-align: center; margin-bottom: 16px; color: #fde68a;">
+        ❓ अक्सर पूछे जाने वाले सवाल (FAQ)
+      </h3>
+
+      <details>
+        <summary>मैं यह सभी ई-बुक्स कैसे प्राप्त करूँगा?</summary>
+        <p>ग्रीन बटन पर क्लिक करके सुरक्षित ऑनलाइन पेमेंट पूरा करें। पेमेंट होते ही तुरंत आपको Google Drive व डायरेक्ट डाउनलोड लिंक आपके ईमेल और व्हाट्सएप पर प्राप्त हो जाएगा।</p>
+      </details>
+
+      <details>
+        <summary>क्या यह एक बार खरीदने पर लाइफटाइम रहेगा?</summary>
+        <p>जी हाँ, यह एक बार का पेमेंट है। फाइलें आपके पास हमेशा के लिए रहेंगी और आप इन्हें मोबाइल, टैबलेट, कंप्यूटर या किंडल पर पढ़ सकते हैं।</p>
+      </details>
+
+      <details>
+        <summary>क्या इसमें संस्कृत श्लोक और हिंदी अनुवाद दोनों हैं?</summary>
+        <p>जी बिल्कुल! इसमें मूल संस्कृत श्लोक और उनका अत्यंत सरल व प्रामाणिक हिंदी अनुवाद साथ में दिया गया है।</p>
+      </details>
+
+      <details>
+        <summary>क्या कोई अलग से शिपिंग या डिलीवरी चार्ज है?</summary>
+        <p>नहीं, यह 100% डिजिटल ई-बुक संग्रह है। कोई अतिरिक्त या छिपा हुआ शुल्क नहीं है।</p>
+      </details>
+
+      <div style="margin-top: 18px;">
+        <a href="https://superprofile.bio/vp/Hindu-Granth" target="_blank" rel="noopener noreferrer" class="btn-3d">
+          <span>🕉️ ₹199 में तुरंत लाइफटाइम एक्सेस लें 🕉️</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Footer & Disclaimer -->
+    <div class="footer">
+      <p>Copyright © 2026 सम्पूर्ण सनातन ग्रंथ संग्रह. सर्वाधिकार सुरक्षित.</p>
+      <p style="margin-top: 8px;">
+        <a href="#">Privacy Policy</a> | 
+        <a href="#">Terms & Conditions</a> | 
+        <a href="#">Refund Policy</a> | 
+        <a href="#">Contact Us</a>
+      </p>
+      <p style="margin-top: 12px; font-size: 11px; opacity: 0.65;">
+        This site is not affiliated with Facebook™ or Meta Inc. All spiritual texts are intended for cultural and educational enrichment.
+      </p>
+    </div>
+
+  </div>
+
+  <!-- Persistent 3D Bottom Floating CTA -->
+  <div class="sticky-bar">
+    <a href="https://superprofile.bio/vp/Hindu-Granth" target="_blank" rel="noopener noreferrer" class="btn-3d">
+      <span>🕉️ आज ही पवित्र संग्रह प्राप्त करें (मात्र ₹199)</span>
+    </a>
+  </div>
+
+</body>
+</html>
